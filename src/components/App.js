@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
+import QuizList from './QuizList';
 
 const App = () => (
   <div>
-    Hello World
+    <QuizList />
   </div>
 );
 
