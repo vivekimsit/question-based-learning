@@ -8,19 +8,16 @@ const fakeDatabase = {
     id: v4(),
     title: 'Get started',
     text: 'hey',
-    active: false,
     completed: true
   }, {
     id: v4(),
     title: 'What are you waiting for?',
     text: 'ho',
-    active: false,
     completed: true
   }, {
     id: v4(),
     title: 'Remember! create more than you consume',
     text: 'let’s go',
-    active: false,
     completed: false
   }],
 };
@@ -38,10 +35,20 @@ export const fetchQuizzes = (filter) =>
     }
   });
 
+export const addQuiz = (text) =>
+  delay(500).then(() => {
+    const quiz = {
+      id: v4(),
+      text,
+      completed: false,
+    };
+    fakeDatabase.quizzes.push(quiz);
+    return quiz;
+  });
+
 export const toggleQuiz = (id) =>
   delay(500).then(() => {
     const quiz = fakeDatabase.quizzes.find(q => q.id === id);
     quiz.completed = !quiz.completed;
-    quiz.active = true;
     return quiz;
   });

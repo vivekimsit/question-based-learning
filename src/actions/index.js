@@ -3,7 +3,7 @@ import * as schema from './schema';
 import * as api from '../api';
 import { getIsFetching } from '../reducers';
 
-export const fetchQizzes = (filter) => (dispatch, getState) => {
+export const fetchQuizzes = (filter) => (dispatch, getState) => {
   if (getIsFetching(getState(), filter)) {
     return Promise.resolve();
   }
@@ -30,3 +30,19 @@ export const fetchQizzes = (filter) => (dispatch, getState) => {
     }
   );
 };
+
+export const addQuiz = (text) => (dispatch) =>
+  api.addTodo(text).then(response => {
+    dispatch({
+      type: 'ADD_QUIZ_SUCCESS',
+      response: normalize(response, schema.quiz),
+    });
+  });
+
+export const toggleQuiz = (id) => (dispatch) =>
+  api.toggleQuiz(id).then(response => {
+    dispatch({
+      type: 'TOGGLE_QUIZ_SUCCESS',
+      response: normalize(response, schema.quiz),
+    });
+  });

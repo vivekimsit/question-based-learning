@@ -1,8 +1,8 @@
 import { Schema, arrayOf } from 'normalizr';
 
-export const hint = new Schema.Entity('hints');
+export const hint = new Schema('hints');
 
-export const quiz = new Schema.Entity('quizzes', {
+export const quiz = new Schema('quizzes', {
   hints: [ hint ]
 });
 

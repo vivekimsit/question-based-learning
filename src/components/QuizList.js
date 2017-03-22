@@ -3,7 +3,7 @@ import Quiz from './Quiz';
 
 const QuizList = ({ quizzes, onQuizClick }) => (
   <ul>
-    {quizzes.map(todo =>
+    {quizzes.map(quiz =>
       <Quiz
         key={quiz.id}
         {...quiz}
@@ -12,5 +12,14 @@ const QuizList = ({ quizzes, onQuizClick }) => (
     )}
   </ul>
 );
+
+QuizList.propTypes = {
+  quizzes: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    completed: PropTypes.bool.isRequired,
+    text: PropTypes.string.isRequired,
+  }).isRequired).isRequired,
+  onQuizClick: PropTypes.func.isRequired,
+};
 
 export default QuizList;

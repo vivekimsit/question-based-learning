@@ -1,37 +1,63 @@
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { toggleTodo } from '../actions';
+import * as actions from '../actions';
+import { getVisibleQuizzes, getErrorMessage, getIsFetching } from '../reducers';
 import QuizList from './QuizList';
 
-const getVisibleQuizzes = (quizzes, filter) => {
-  switch (filter) {
-    case 'SHOW_ALL':
-      return quizzes;
-    case 'SHOW_COMPLETED':
-      return quizzes.filter(t => t.completed);
-    case 'SHOW_ACTIVE':
-      return quizzes.filter(t => !t.completed);
-    default:
-      throw new Error(`Unknown filter: ${filter}.`);
+
+class VisibleQuizList extends Component {
+  componentDidMount() {
+    this.fetchData();
   }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.filter !== prevProps.filter) {
+      this.fetchData();
+    }
+  }
+
+  fetchData() {
+    const { filter, fetchQuizzes } = this.props;
+    fetchQuizzes(filter);
+  }
+
+  render() {
+    const { isFetching, errorMessage, toggleQuiz, quizzes } = this.props;
+    if (isFetching && !quizzes.length) {
+      return <p>Loading...</p>;
+    }
+
+    return (
+      <QuizList
+        quizzes={quizzes}
+        onQuizClick={toggleQuiz}
+      />
+    );
+  }
+}
+
+VisibleQuizList.propTypes = {
+  filter: PropTypes.oneOf(['all', 'active', 'completed']).isRequired,
+  errorMessage: PropTypes.string,
+  quizzes: PropTypes.array.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  fetchQuizzes: PropTypes.func.isRequired,
+  toggleQuiz: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
+  const filter = 'all';
   return {
-    quizzes: getVisibleTodos(state.quizzes, state.visibilityFilter),
+    isFetching: getIsFetching(state, filter),
+    errorMessage: getErrorMessage(state, filter),
+    quizzes: getVisibleQuizzes(state, filter),
+    filter,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onQuizClick: (id) => {
-      dispatch(toggleQuiz(id));
-    },
-  };
-};
-
-const VisibleQuizList = connect(
+VisibleQuizList = connect(
   mapStateToProps,
-  mapDispatchToProps
-)(QuizList);
+  actions
+)(VisibleQuizList);
 
 export default VisibleQuizList;

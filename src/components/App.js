@@ -1,10 +1,16 @@
 import React, { PropTypes } from 'react';
-import QuizList from './QuizList';
+import VisibleQuizList from './VisibleQuizList';
 
 const App = () => (
   <div>
-    <QuizList />
+    <VisibleQuizList />
   </div>
 );
+
+App.propTypes = {
+  params: PropTypes.shape({
+    filter: PropTypes.string,
+  }),
+};
 
 export default App;
