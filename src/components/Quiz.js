@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
-import Button from './Button.js';
+import Button from './Button';
 import {
   Card,
   CardActions,
@@ -9,7 +9,7 @@ import {
   CardTitle,
   CardTitleText,
   CardText,
-  CardImage } from './Card.js';
+  CardImage } from './Card';
 
 const IMG_SRC = 'https://d3hvwccx09j84u.cloudfront.net/680,480/image/w14-r2-7460327b.jpg';
 
@@ -29,22 +29,22 @@ const SubHead = styled.span`
   color: rgba(0,0,0,0.54);
 `;
 
-const Quiz = ({ onClick, completed, title, text }) => (
-    <Card>
-      <CardImage src={IMG_SRC}></CardImage>
-      <CardTitle>
-        <CardTitleText>
-          <Title>{title}</Title>
-        </CardTitleText>
-      </CardTitle>
-      <CardContent>
-        <p>{text}</p>
-      </CardContent>
-      <CardActions>
-        <Button>Hint?</Button>
-        <Button primary>Done</Button>
-      </CardActions>
-    </Card>
+const Quiz = ({ completed, title, text, onHint, onDone }) => (
+  <Card>
+    <CardImage src={IMG_SRC}></CardImage>
+    <CardTitle>
+      <CardTitleText>
+        <Title>{title}</Title>
+      </CardTitleText>
+    </CardTitle>
+    <CardContent>
+      <p>{text}</p>
+    </CardContent>
+    <CardActions>
+      <Button onClick={() => onHint()}>Hint?</Button>
+      <Button primary onClick={() => onDone()}>Done</Button>
+    </CardActions>
+  </Card>
 );
 
 export default Quiz;

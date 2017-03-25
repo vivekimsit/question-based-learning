@@ -8,8 +8,9 @@ const Card = styled.div`
   font-size: 16px;
   font-weight: 400;
   min-height: 200px;
+  max-width: 500px;
   overflow: hidden;
-  width: 330px;
+  width: 400px;
   z-index: 1;
   margin: 8px;
   position: relative;
@@ -17,7 +18,6 @@ const Card = styled.div`
   border-radius: 2px;
   box-sizing: border-box;
 `;
-
 
 const CardHeader = styled.div`
   display: flex;

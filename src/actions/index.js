@@ -46,3 +46,17 @@ export const toggleQuiz = (id) => (dispatch) =>
       response: normalize(response, schema.quiz),
     });
   });
+
+export const showHint = (id) => (dispatch) => {
+  dispatch({
+    type: 'FETCH_HINT_REQUEST',
+    id,
+  });
+
+  api.showHint(id).then(response => {
+    dispatch({
+      type: 'FETCH_HINT_SUCCESS',
+      response: normalize(response, schema.quiz),
+    });
+  });
+}

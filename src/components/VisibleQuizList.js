@@ -22,7 +22,7 @@ class VisibleQuizList extends Component {
   }
 
   render() {
-    const { isFetching, errorMessage, toggleQuiz, quizzes } = this.props;
+    const { isFetching, errorMessage, toggleQuiz, showHint, quizzes } = this.props;
     if (isFetching && !quizzes.length) {
       return <p>Loading...</p>;
     }
@@ -31,6 +31,7 @@ class VisibleQuizList extends Component {
       <QuizList
         quizzes={quizzes}
         onQuizClick={toggleQuiz}
+        onHintClick={showHint}
       />
     );
   }
@@ -43,6 +44,7 @@ VisibleQuizList.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   fetchQuizzes: PropTypes.func.isRequired,
   toggleQuiz: PropTypes.func.isRequired,
+  showHint: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {

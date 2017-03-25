@@ -1,16 +1,18 @@
 import React, { PropTypes } from 'react';
+import List from './List';
 import Quiz from './Quiz';
 
-const QuizList = ({ quizzes, onQuizClick }) => (
-  <ul>
+const QuizList = ({ quizzes, onQuizClick, onHintClick }) => (
+  <List>
     {quizzes.map(quiz =>
       <Quiz
         key={quiz.id}
         {...quiz}
-        onClick={() => onQuizClick(quiz.id)}
+        onDone={() => onQuizClick(quiz.id)}
+        onHint={() => onHintClick(5)} // TODO
       />
     )}
-  </ul>
+  </List>
 );
 
 QuizList.propTypes = {
