@@ -48,6 +48,7 @@ export const toggleQuiz = (id) => (dispatch) =>
   });
 
 export const showHint = (id) => (dispatch) => {
+  console.log('id//////////', id)
   dispatch({
     type: 'FETCH_HINT_REQUEST',
     id,
@@ -56,7 +57,7 @@ export const showHint = (id) => (dispatch) => {
   api.showHint(id).then(response => {
     dispatch({
       type: 'FETCH_HINT_SUCCESS',
-      response: normalize(response, schema.quiz),
+      response: normalize(response, schema.hint),
     });
   });
 }

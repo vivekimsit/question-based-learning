@@ -10,10 +10,10 @@ const fakeDatabase = {
     text: 'hey',
     completed: true,
     hints: [{
-      id: 1,
+      id: v4(),
       text: 'Hint 1'
     }, {
-      id: 2,
+      id: v4(),
       text: 'Hint 2'
     }]
   }, {
@@ -22,10 +22,10 @@ const fakeDatabase = {
     text: 'ho',
     completed: true,
     hints: [{
-      id: 3,
+      id: v4(),
       text: 'Hint 3'
     }, {
-      id: 4,
+      id: v4(),
       text: 'Hint 4'
     }]
   }, {
@@ -34,10 +34,10 @@ const fakeDatabase = {
     text: 'let’s go',
     completed: false,
     hints: [{
-      id: 5,
+      id: v4(),
       text: 'Hint 5'
     }, {
-      id: 6,
+      id: v4(),
       text: 'Hint 6'
     }]
   }],
@@ -76,6 +76,12 @@ export const toggleQuiz = (id) =>
 
 export const showHint = (id) =>
   delay(500).then(() => {
-    const hint = fakeDatabase.hints.find(h => h.id === id);
-    return hint;
+    fakeDatabase.quizzes.forEach(q => {
+      const hint = q.hints.find(h => h.id === id);
+      if (hint) {
+        console.log('Hint/////', hint);
+        return hint;
+      }
+    });
+    return null;
   });

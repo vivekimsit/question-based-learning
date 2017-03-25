@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import Button from './Button';
+import { connect } from 'react-redux';
 import {
   Card,
   CardActions,
@@ -10,6 +11,9 @@ import {
   CardTitleText,
   CardText,
   CardImage } from './Card';
+import HintListItem from './HintListItem';
+import List from './List';
+import getHints from '../reducers';
 
 const IMG_SRC = 'https://d3hvwccx09j84u.cloudfront.net/680,480/image/w14-r2-7460327b.jpg';
 
@@ -29,8 +33,9 @@ const SubHead = styled.span`
   color: rgba(0,0,0,0.54);
 `;
 
-const Quiz = ({ completed, title, text, onHint, onDone }) => (
-  <Card>
+let Quiz = ({ completed, title, text, hints, onHint, onDone }) => {
+  console.log(hints);
+  return (<Card>
     <CardImage src={IMG_SRC}></CardImage>
     <CardTitle>
       <CardTitleText>
@@ -40,11 +45,27 @@ const Quiz = ({ completed, title, text, onHint, onDone }) => (
     <CardContent>
       <p>{text}</p>
     </CardContent>
+    <CardContent>
+      <List items={hints} component={HintListItem} />
+    </CardContent>
     <CardActions>
       <Button onClick={() => onHint()}>Hint?</Button>
       <Button primary onClick={() => onDone()}>Done</Button>
     </CardActions>
-  </Card>
-);
+  </Card>);
+};
+
+const mapStateToProps = (state, ownProps) => {
+  return Object.assign({}, ...ownProps, {
+    hints: ownProps.hints.map(h => {
+      let hint = state.hintById[h];
+      return hint;
+    })
+  });
+};
+
+Quiz = connect(
+  mapStateToProps
+)(Quiz);
 
 export default Quiz;

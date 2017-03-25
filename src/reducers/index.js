@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
-import byId, * as fromById from './byId';
+import quizById, * as fromQuizById from './quizById';
+import hintById, * as fromHintById from './hintById';
 import createList, * as fromList from './createList';
 
 const listByFilter = combineReducers({
@@ -9,7 +10,8 @@ const listByFilter = combineReducers({
 });
 
 const quizzes = combineReducers({
-  byId,
+  quizById,
+  hintById,
   listByFilter
 });
 
@@ -17,7 +19,11 @@ export default quizzes;
 
 export const getVisibleQuizzes = (state, filter) => {
   const ids = fromList.getIds(state.listByFilter[filter]);
-  return ids.map(id => fromById.getQuiz(state.byId, id));
+  return ids.map(id => fromQuizById.getQuiz(state.quizById, id));
+};
+
+export const getHints = (state, ids) => {
+  return ids.map(id => fromHintById.getHint(state.hintById, id));
 };
 
 export const getIsFetching = (state, filter) =>

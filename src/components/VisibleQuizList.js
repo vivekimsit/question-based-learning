@@ -22,7 +22,10 @@ class VisibleQuizList extends Component {
   }
 
   render() {
-    const { isFetching, errorMessage, toggleQuiz, showHint, quizzes } = this.props;
+    const {
+      isFetching,
+      errorMessage, toggleQuiz, showHint, quizzes } = this.props;
+
     if (isFetching && !quizzes.length) {
       return <p>Loading...</p>;
     }
