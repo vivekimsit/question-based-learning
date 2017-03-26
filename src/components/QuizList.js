@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import List from './List';
-import QuizListItem from './QuizListItem';
+import QuizCard from './QuizCard';
 
 const QuizList = ({quizzes, onQuizClick, onHintClick}) => (
-  <List items={quizzes} component={QuizListItem} />
+  <List items={quizzes} component={QuizCard} />
 );
 
 QuizList.propTypes = {

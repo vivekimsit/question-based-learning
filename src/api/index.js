@@ -3,9 +3,12 @@ import { v4 } from 'node-uuid';
 // This is a fake in-memory implementation of something
 // that would be implemented by calling a REST server.
 
+const IMG_SRC = 'https://d3hvwccx09j84u.cloudfront.net/680,480/image/w14-r2-7460327b.jpg';
+
 const fakeDatabase = {
   quizzes: [{
     id: v4(),
+    img: IMG_SRC,
     title: 'Get started',
     text: 'hey',
     completed: true,
@@ -30,6 +33,7 @@ const fakeDatabase = {
     }]
   }, {
     id: v4(),
+    img: IMG_SRC,
     title: 'Remember! create more than you consume',
     text: 'let’s go',
     completed: false,
