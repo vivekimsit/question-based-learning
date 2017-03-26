@@ -1,18 +1,9 @@
 import React, { PropTypes } from 'react';
 import List from './List';
-import Quiz from './Quiz';
+import QuizListItem from './QuizListItem';
 
 const QuizList = ({quizzes, onQuizClick, onHintClick}) => (
-  <ul>
-    {quizzes.map(quiz =>
-      <Quiz
-        key={quiz.id}
-        {...quiz}
-        onDone={() => onQuizClick(quiz.id)}
-        onHint={() => onHintClick(5)}
-      />
-    )}
-  </ul>
+  <List items={quizzes} component={QuizListItem} />
 );
 
 QuizList.propTypes = {
@@ -22,6 +13,7 @@ QuizList.propTypes = {
     text: PropTypes.string.isRequired,
   }).isRequired).isRequired,
   onQuizClick: PropTypes.func.isRequired,
+  onHintClick: PropTypes.func.isRequired
 };
 
 export default QuizList;

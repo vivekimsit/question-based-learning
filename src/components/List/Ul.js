@@ -6,6 +6,9 @@ const Ul = styled.ul`
   width: 100%;
   overflow-y: auto;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export default Ul;
