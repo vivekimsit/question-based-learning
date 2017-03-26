@@ -1,7 +1,10 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
+import * as actions from '../actions';
+import { connect } from 'react-redux';
+import Hint from './Hint';
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   width: 100%;
   height: 100%;
   display: flex;
@@ -12,7 +15,7 @@ const Wrapper = styled.div`
 
 let HintListItem = (props) => (
   <Wrapper>
-    {props.item.text}
+    <Hint {...props} />
   </Wrapper>
 );
 

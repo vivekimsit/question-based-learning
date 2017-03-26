@@ -6,7 +6,6 @@ const QuizListItem = (props) => {
   return (<Quiz
     {...quiz}
     onDone={() => onQuizClick(quiz.id)}
-    onHint={() => onHintClick(hint.id)}
   />);
 };
 

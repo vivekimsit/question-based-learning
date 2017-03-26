@@ -10,18 +10,15 @@ import {
   CardTitleText,
   CardText,
   CardImage } from './Card';
+import Button from './Button';
 import HintListItem from './HintListItem';
 import List from './List';
-import Button from './Button';
-import Title from './Title';
 import SubHead from './SubHead';
+import Title from './Title';
 
-const IMG_SRC = 'https://d3hvwccx09j84u.cloudfront.net/680,480/image/w14-r2-7460327b.jpg';
-
-let Quiz = ({ completed, title, text, hints, onHint, onDone }) => {
-  console.log(hints);
+let Quiz = ({ completed, title, text, hints, img, onHint, onDone }) => {
   return (<Card>
-    <CardImage src={IMG_SRC}></CardImage>
+    <CardImage src={img}></CardImage>
     <CardTitle>
       <CardTitleText>
         <Title>{title}</Title>
@@ -41,11 +38,12 @@ let Quiz = ({ completed, title, text, hints, onHint, onDone }) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
+  const hints = ownProps.hints.map(h => {
+    return state.hintById[h];
+  });
+  const img = 'https://d3hvwccx09j84u.cloudfront.net/680,480/image/w14-r2-7460327b.jpg';
   return Object.assign({}, ...ownProps, {
-    hints: ownProps.hints.map(h => {
-      let hint = state.hintById[h];
-      return hint;
-    })
+    hints, img
   });
 };
 
