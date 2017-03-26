@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "babel-polyfill": "^6.3.14",
+    "fontfaceobserver": "^2.0.9",
     "lodash": "^4.11.2",
     "node-uuid": "^1.4.7",
     "normalizr": "^3.2.0",
