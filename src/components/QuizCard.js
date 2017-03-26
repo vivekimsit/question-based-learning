@@ -19,9 +19,11 @@ import SubHead from './SubHead';
 import Title from './Title';
 
 let QuizCard = (props) => {
-  const { id, img, title, hints, showHints, toggleHints } = props;
+  const {
+    id, img, title, completed, hints, showHints,
+    toggleHints, toggleQuiz } = props;
   return (
-    <Card>
+    <Card className={ completed ? 'done' : null }>
       <CardImage src={img}></CardImage>
       <CardTitle>
         <CardTitleText>

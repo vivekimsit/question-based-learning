@@ -7,7 +7,7 @@ const quizById = (state = {}, action) => {
   }
   switch (action.type) {
     case 'TOGGLE_HINTS':
-      const quiz = state[action.quizId];
+      let quiz = state[action.quizId];
       return {
         ...state,
         [quiz.id]: {...quiz, showHints: !quiz.showHints}
