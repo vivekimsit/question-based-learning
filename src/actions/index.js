@@ -47,17 +47,9 @@ export const toggleQuiz = (id) => (dispatch) =>
     });
   });
 
-export const showHint = (id) => (dispatch) => {
-  console.log('id//////////', id)
+export const toggleHints = (quizId) => (dispatch) => {
   dispatch({
-    type: 'FETCH_HINT_REQUEST',
-    id,
-  });
-
-  api.showHint(id).then(response => {
-    dispatch({
-      type: 'FETCH_HINT_SUCCESS',
-      response: normalize(response, schema.hint),
-    });
+    type: 'TOGGLE_HINTS',
+    quizId,
   });
 }

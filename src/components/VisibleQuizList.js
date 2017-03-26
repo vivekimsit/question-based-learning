@@ -47,8 +47,7 @@ VisibleQuizList.propTypes = {
   quizzes: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   fetchQuizzes: PropTypes.func.isRequired,
-  toggleQuiz: PropTypes.func.isRequired,
-  showHint: PropTypes.func.isRequired
+  toggleQuiz: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {

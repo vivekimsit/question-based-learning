@@ -5,7 +5,16 @@ const quizById = (state = {}, action) => {
       ...action.response.entities.quizzes,
     };
   }
-  return state;
+  switch (action.type) {
+    case 'TOGGLE_HINTS':
+      const quiz = state[action.quizId];
+      return {
+        ...state,
+        [quiz.id]: {...quiz, showHints: !quiz.showHints}
+      }
+    default:
+      return state;
+  }
 };
 
 export default quizById;

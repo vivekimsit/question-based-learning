@@ -22,8 +22,9 @@ export const getVisibleQuizzes = (state, filter) => {
   return ids.map(id => fromQuizById.getQuiz(state.quizById, id));
 };
 
-export const getHints = (state, ids) => {
-  return ids.map(id => fromHintById.getHint(state.hintById, id));
+export const getHints = (state, id) => {
+  const quiz = fromQuizById.getQuiz(state.quizById, id);
+  return fromHintById.getHints(state.hintById, quiz.hints);
 };
 
 export const getIsFetching = (state, filter) =>

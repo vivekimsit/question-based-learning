@@ -11,3 +11,6 @@ const hintById = (state = {}, action) => {
 export default hintById;
 
 export const getHint = (state, id) => state[id];
+
+export const getHints = (state, ids) =>
+  ids.map(id => getHint(id))

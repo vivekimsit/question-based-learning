@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 import Quiz from './Quiz';
 import {
@@ -18,7 +19,7 @@ import SubHead from './SubHead';
 import Title from './Title';
 
 let QuizCard = (props) => {
-  const {img, title, hints} = props;
+  const { id, img, title, hints, showHints, toggleHints } = props;
   return (
     <Card>
       <CardImage src={img}></CardImage>
@@ -30,12 +31,16 @@ let QuizCard = (props) => {
       <CardContent>
         <Quiz {...props.item} />
       </CardContent>
-      <CardContent>
-        <List items={hints} component={HintListItem} />
-      </CardContent>
+      { showHints ?
+          <CardContent>
+            <List items={hints} component={HintListItem} />
+          </CardContent> : null
+      }
       <CardActions>
-        <Button onClick={() => onHint()}>Hint?</Button>
-        <Button primary onClick={() => onDone()}>Done</Button>
+        <Button onClick={() => toggleHints(id)}>
+         { showHints ? 'CloseHints' : 'Hints?' }
+        </Button>
+        <Button primary onClick={() => toggleQuiz(id)}>Done</Button>
       </CardActions>
     </Card>
   );
@@ -48,9 +53,9 @@ const mapStateToProps = (state, ownProps) => {
   return {...ownProps.item, hints};
 };
 
-
 QuizCard = connect(
-  mapStateToProps
+  mapStateToProps,
+  actions
 )(QuizCard);
 
 export default QuizCard;

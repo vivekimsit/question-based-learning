@@ -12,6 +12,7 @@ const fakeDatabase = {
     title: 'Get started',
     text: 'hey',
     completed: true,
+    showHints: true,
     hints: [{
       id: v4(),
       text: 'Hint 1'
@@ -24,6 +25,7 @@ const fakeDatabase = {
     title: 'What are you waiting for?',
     text: 'ho',
     completed: true,
+    showHints: false,
     hints: [{
       id: v4(),
       text: 'Hint 3'
@@ -37,6 +39,7 @@ const fakeDatabase = {
     title: 'Remember! create more than you consume',
     text: 'let’s go',
     completed: false,
+    showHints: false,
     hints: [{
       id: v4(),
       text: 'Hint 5'
@@ -78,14 +81,15 @@ export const toggleQuiz = (id) =>
     return quiz;
   });
 
-export const showHint = (id) =>
+/*
+export const showHints = (id) =>
   delay(500).then(() => {
     fakeDatabase.quizzes.forEach(q => {
       const hint = q.hints.find(h => h.id === id);
-      if (hint) {
-        console.log('Hint/////', hint);
+      if (hints) {
         return hint;
       }
     });
     return null;
   });
+*/
