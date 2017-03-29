@@ -58,6 +58,10 @@ export const fetchQuizzes = (filter) =>
     switch (filter) {
       case 'all':
         return fakeDatabase.quizzes;
+      case 'active':
+        return fakeDatabase.quizzes.filter(t => !t.completed);
+      case 'completed':
+        return fakeDatabase.quizzes.filter(t => t.completed);
       default:
         throw new Error(`Unknown filter: ${filter}`);
     }

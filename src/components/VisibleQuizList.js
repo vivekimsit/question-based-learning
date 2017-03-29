@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+
 import * as actions from '../actions';
 import {
   getVisibleQuizzes,
@@ -52,8 +54,8 @@ VisibleQuizList.propTypes = {
   toggleQuiz: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => {
-  const filter = 'all';
+const mapStateToProps = (state, { params }) => {
+  const filter = params.filter || 'active';
   return {
     isFetching: getIsFetching(state, filter),
     errorMessage: getErrorMessage(state, filter),
@@ -62,9 +64,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-VisibleQuizList = connect(
+VisibleQuizList = withRouter(connect(
   mapStateToProps,
   actions
-)(VisibleQuizList);
+)(VisibleQuizList));
 
 export default VisibleQuizList;

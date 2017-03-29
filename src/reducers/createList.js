@@ -19,10 +19,6 @@ const createList = (filter) => {
         return filter === action.filter ?
           action.response.result :
           state;
-      case 'ADD_QUIZ_SUCCESS':
-        return filter !== 'completed' ?
-          [...state, action.response.result] :
-          state;
       case 'TOGGLE_QUIZ_SUCCESS':
         return handleToggle(state, action);
       default:
