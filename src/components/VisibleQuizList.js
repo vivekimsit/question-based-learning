@@ -2,7 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import {
-  getVisibleQuizzes, getErrorMessage, getIsFetching } from '../reducers';
+  getVisibleQuizzes,
+  getErrorMessage,
+  getIsFetching } from '../reducers';
 import QuizList from './QuizList';
 
 

@@ -1,11 +1,14 @@
 import React, { PropTypes } from 'react';
-import VisibleQuizList from './VisibleQuizList';
+
+import NavBar from './NavBar';
 import Quiz from './Quiz';
+import VisibleQuizList from './VisibleQuizList';
 
 const App = () => (
-  <div>
+  <main>
+    <NavBar />
     <VisibleQuizList />
-  </div>
+  </main>
 );
 
 App.propTypes = {

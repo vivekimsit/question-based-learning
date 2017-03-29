@@ -81,15 +81,3 @@ export const toggleQuiz = (id) =>
     return quiz;
   });
 
-/*
-export const showHints = (id) =>
-  delay(500).then(() => {
-    fakeDatabase.quizzes.forEach(q => {
-      const hint = q.hints.find(h => h.id === id);
-      if (hints) {
-        return hint;
-      }
-    });
-    return null;
-  });
-*/
