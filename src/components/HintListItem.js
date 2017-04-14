@@ -13,10 +13,8 @@ const Wrapper = styled.section`
   box-sizing: border-box;
 `;
 
-let HintListItem = (props) => (
+export default (props) => (
   <Wrapper>
     <Hint {...props} />
   </Wrapper>
 );
-
-export default HintListItem;

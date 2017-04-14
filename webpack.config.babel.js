@@ -1,19 +1,25 @@
-import path from 'path';
+const path = require('path');
+const webpack = require('webpack');
 
-export default {
+module.exports = {
   devtool: 'eval',
-  entry: './src/index',
+  entry: [
+    'webpack-hot-middleware/client?reload=true',
+    path.join(__dirname, 'src/app.js'),
+  ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'build'),
     filename: 'bundle.js',
     publicPath: '/static/',
   },
   module: {
     loaders: [{
       test: /\.js$/,
-      loaders: ['babel'],
+      loader: 'babel-loader',
       exclude: /node_modules/,
-      include: __dirname,
+      presets: ['babel-preset-react-hmre'].map(require.resolve),
     }],
   },
+  plugins: [new webpack.HotModuleReplacementPlugin()],
+  target: 'web', // Make web variables accessible to webpack, e.g. window
 };

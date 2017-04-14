@@ -9,7 +9,7 @@ const NavWrapper = styled.nav`
   display: flex;
   justify-content: space-around;
   padding: .75rem;
-	margin-bottom: 0.5em;
+  margin-bottom: 0.5em;
   font-size: 1.15rem;
   box-shadow: 0 8px 6px -6px #999;
 `;
@@ -20,7 +20,7 @@ const NavBar = (props) => (
       Active
     </Link>
     <Link to="/completed">
-      Completed
+      Complete
     </Link>
     <Link to="/all">
       All
