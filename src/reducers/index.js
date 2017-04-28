@@ -22,6 +22,9 @@ export const getVisibleQuizzes = (state, filter) => {
   return ids.map(id => fromQuizById.getQuiz(state.quizById, id));
 };
 
+export const getQuizCount = (state, filter) =>
+  state.listByFilter[filter].ids.length;
+
 export const getHints = (state, id) => {
   const quiz = fromQuizById.getQuiz(state.quizById, id);
   return fromHintById.getHints(state.hintById, quiz.hints);

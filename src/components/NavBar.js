@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 
 import Link from './Link';
+import Count from './Count';
 
 const NavWrapper = styled.nav`
   text-align: center;
@@ -17,12 +18,15 @@ const NavWrapper = styled.nav`
 const NavBar = (props) => (
   <NavWrapper>
     <Link to="/">
+      <Count filter="active" />
       Active
     </Link>
     <Link to="/completed">
+      <Count filter="completed" />
       Complete
     </Link>
     <Link to="/all">
+      <Count filter="all" />
       All
     </Link>
   </NavWrapper>

@@ -20,3 +20,4 @@ const quizById = (state = {}, action) => {
 export default quizById;
 
 export const getQuiz = (state, id) => state[id];
+

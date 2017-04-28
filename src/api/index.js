@@ -47,7 +47,7 @@ const fakeDatabase = {
       id: v4(),
       text: 'Hint 6'
     }]
-  }],
+  }]
 };
 
 const delay = (ms) =>
